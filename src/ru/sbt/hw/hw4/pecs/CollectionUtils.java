@@ -24,7 +24,7 @@ public class CollectionUtils {
 
 
 
-    public static<T> List limit(List<? extends T> source, int size) {
+    public static<T> List<? extends T> limit(List<? extends T> source, int size) {
         return source.subList(0, size - 1);
     }
 
@@ -43,30 +43,34 @@ public class CollectionUtils {
 
 
     public static<T> boolean containsAll(List<? extends T> c1, List<? extends T> c2) {
+
         return c1.containsAll(c2);
     }
 
 
 
     public static<T> boolean containsAny(List<? extends T> c1, List<? extends T> c2) {
+        boolean key = false;
         for(T t : c2) {
             if(c1.contains(c2)) {
-                return true;
-            } else return false;
-        } return false;
+                key = true;
+            }
+        } return key;
     }
 
 
 
-    public static<T> List range(List<? extends T> list, T min, T max) {
-        return list.subList(list.indexOf(min), list.indexOf(max));
+    public static<T extends Comparable<? super T>> List<? extends T> range(List<? extends T> list, T min, T max) {
+        List<? extends T> copyList = list;
+        Collections.sort(copyList);
+        return copyList.subList(copyList.indexOf(min), copyList.indexOf(max));
     }
 
 
 
-    public static<T> List range(List<? extends T> list, T min, T max, Comparator<? super T> comparator) {
-        List<? extends T> range = list.subList(list.indexOf(min), list.indexOf(max));
-        range.sort(comparator);
-        return range;
+    public static<T> List<? extends T> range(List<? extends T> list, T min, T max, Comparator<? super T> comparator) {
+        List<? extends T> copyList = list.subList(list.indexOf(min), list.indexOf(max));
+        copyList.sort(comparator);
+        return copyList;
     }
 }
