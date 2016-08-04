@@ -4,6 +4,9 @@ package ru.sbt.hw.hw5;
  * Created by i.viktor on 04/08/16.
  */
 public class TerminalServer {
+
+
+
     private int countMoney;
 
     private int pin;
@@ -26,7 +29,6 @@ public class TerminalServer {
     public int getPin() throws NetworkException {
         return pin;
     }
-
 
 
 }

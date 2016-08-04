@@ -9,9 +9,6 @@ public class PinValidator {
 
     private int serverPin;
 
-    private int countTry;
-
-    private boolean pinChecker = false;
 
     public PinValidator(int pin, int serverPin) {
         this.pin = pin;
