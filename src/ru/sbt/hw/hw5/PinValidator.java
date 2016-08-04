@@ -7,11 +7,21 @@ package ru.sbt.hw.hw5;
 public class PinValidator {
     private int pin;
 
-    private int trying;
+    private int serverPin;
+
+    private int countTry;
 
     private boolean pinChecker = false;
 
-    public PinValidator(int pin) {
+    public PinValidator(int pin, int serverPin) {
         this.pin = pin;
+        this.serverPin = serverPin;
+    }
+
+
+    public boolean checkPin() throws AccountIsLockedException {
+        boolean key = false;
+        if(this.pin == this.serverPin) return true;
+        return false;
     }
 }

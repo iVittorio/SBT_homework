@@ -14,7 +14,7 @@ public class TerminalServer {
 
     public void setPin(int pin) throws IncorrectPinException {
         Integer iPin = new Integer(pin);
-        if(iPin.toString().length() != 4) throw new IncorrectPinException("Некорректный PIN");
+        if(iPin.toString().length() != 4 && pin<0) throw new IncorrectPinException("Некорректный PIN");
         this.pin = pin;
     }
 
