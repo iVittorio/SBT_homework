@@ -65,7 +65,7 @@ public class TerminalImpl implements Terminal {
                 throw new AccountIsLockedException("Счет заблокирован до: " + getUnlockTimeFormatted());
             }
             if (!correctedPin) {
-                throw new RuntimeException("Введите верный PIN");
+                throw new RuntimeException("Введите верный PIN или номер счета");
             }
             if (n%100 != 0) {
                 throw new RuntimeException("Минимальная сумма для пополнения счета равна 100 у.е.");

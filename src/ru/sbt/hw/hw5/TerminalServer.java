@@ -6,7 +6,7 @@ package ru.sbt.hw.hw5;
  */
 public class TerminalServer {
 
-    private final Account person = new Account("1111222233334444","1234");
+    private final Account person = new Account("12345","1234");
 
     public void checkPin(String pin) {
         if(person.getPin().equals(pin)) return;
@@ -14,7 +14,7 @@ public class TerminalServer {
     }
     public void checkCard(String card) {
         if(person.getCardNumber().equals(card)) return;
-        else throw new RuntimeException("Такой карты не существует");
+        else throw new RuntimeException("Такого счета не существует");
     }
 
     public void getBalance() {

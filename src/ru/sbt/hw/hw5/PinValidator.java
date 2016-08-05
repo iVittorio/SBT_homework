@@ -9,9 +9,9 @@ public class PinValidator {
     public void carValidator(String cardNum) throws AccountIsLockedException {
         try {
             Integer.parseInt(cardNum);
-            if(cardNum.length() != 16) throw new NumberFormatException();
+            if(cardNum.length() != 5) throw new NumberFormatException();
         } catch (NumberFormatException e) {
-            throw new AccountIsLockedException("Некорректный номер карты", e);
+            throw new AccountIsLockedException("Некорректный номер счета", e);
         }
     }
 
