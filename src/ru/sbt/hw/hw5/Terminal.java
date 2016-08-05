@@ -8,7 +8,7 @@ public interface Terminal {
 
     void getBalance();
 
-    void getMoney();
+    void getMoney(int n);
 
-    void putMoney();
+    void putMoney(int n);
 }

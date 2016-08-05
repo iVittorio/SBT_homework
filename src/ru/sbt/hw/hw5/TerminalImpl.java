@@ -37,18 +37,18 @@ public class TerminalImpl implements Terminal {
             correctedPin = true;
             countTrying = 0;
 
-            System.out.println("Терминал: Корректный PIN");
+            System.out.println("Корректный PIN");
             return true;
         } catch (AccountIsLockedException e) {
             countTrying++;
-            System.out.println("Терминал: " + e.getMessage());
+            System.out.println(e.getMessage());
             if (countTrying >= 3) {
                 accountLocker = true;
                 time = new Date(System.currentTimeMillis() + 5*1000);
-                System.out.println("Терминал: Счет заблокирован до: " + getUnlockTimeFormatted());
+                System.out.println("Счет заблокирован до: " + getUnlockTimeFormatted());
             }
         } catch (RuntimeException e) {
-            System.out.println("Терминал: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
         return false;
     }
@@ -59,18 +59,56 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public void putMoney() {
+    public void putMoney(int n) {
+        try {
+            if(isAccountLocker()) {
+                throw new AccountIsLockedException("Счет заблокирован до: " + getUnlockTimeFormatted());
+            }
+            if (!correctedPin) {
+                throw new RuntimeException("Введите верный PIN");
+            }
+            if (n%100 != 0) {
+                throw new RuntimeException("Минимальная сумма для пополнения счета равна 100 у.е.");
+            }
+            terminalServer.putMoney(n);
 
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void getBalance() {
-
+        try {
+            if(isAccountLocker()) {
+                throw new AccountIsLockedException("Счет заблокирован до: " + getUnlockTimeFormatted());
+            }
+            if (!correctedPin) {
+                throw new RuntimeException("Введите верный PIN");
+            }
+            terminalServer.getBalance();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
-    public void getMoney() {
+    public void getMoney(int n) {
+        try {
+            if(isAccountLocker()) {
+                throw new AccountIsLockedException("Счет заблокирован до: " + getUnlockTimeFormatted());
+            }
+            if (!correctedPin) {
+                throw new RuntimeException("Введите верный PIN");
+            }
+            if (n%100 != 0) {
+                throw new RuntimeException("Минимальная сумма для снятия равна 100 у.е.");
+            }
 
+            terminalServer.getCash(n);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private boolean isAccountLocker() {
