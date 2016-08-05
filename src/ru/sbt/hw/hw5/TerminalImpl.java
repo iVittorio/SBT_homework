@@ -47,9 +47,7 @@ public class TerminalImpl implements Terminal {
                 time = new Date(System.currentTimeMillis() + 5*1000);
                 System.out.println("Счет заблокирован до: " + getUnlockTimeFormatted());
             }
-        } /*catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }*/
+        }
         return false;
     }
 
