@@ -1,34 +1,30 @@
 package ru.sbt.hw.hw5;
 
+
 /**
  * Created by i.viktor on 04/08/16.
  */
 public class TerminalServer {
 
+    private final Account person = new Account("1111222233334444","1234");
 
-
-    private int countMoney;
-
-    private int pin;
-
-    public void setCountMoney(int countMoney) {
-        this.countMoney = countMoney;
+    public void checkPin(String pin) {
+        if(person.getPin().equals(pin)) return;
+        else throw new RuntimeException("Не правильный PIN");
     }
 
-    public void setPin(int pin) throws IncorrectPinException {
-        Integer iPin = new Integer(pin);
-        if(iPin.toString().length() != 4 && pin<0) throw new IncorrectPinException("Некорректный PIN");
-        this.pin = pin;
+    public void getBalance() {
+        System.out.println("Баланс равен: " + person.getMoney());
     }
 
-    public int getCountMoney() throws NotEnoughMoneyException, NetworkException {
-        if(countMoney <= 0) throw new NetworkException("Нет денег :(");
-        return countMoney;
+    public void getCash(int sum) {
+        try {
+            person.getCash(sum);
+        } catch (RuntimeException e) {
+        }
     }
 
-    public int getPin() throws NetworkException {
-        return pin;
+    public void putMoney(int sum) {
+        person.setMoney(sum);
     }
-
-
 }
