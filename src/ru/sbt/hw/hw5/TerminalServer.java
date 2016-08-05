@@ -12,6 +12,10 @@ public class TerminalServer {
         if(person.getPin().equals(pin)) return;
         else throw new RuntimeException("Не правильный PIN");
     }
+    public void checkCard(String card) {
+        if(person.getCardNumber().equals(card)) return;
+        else throw new RuntimeException("Такой карты не существует");
+    }
 
     public void getBalance() {
         System.out.println("Баланс равен: " + person.getMoney());

@@ -4,10 +4,11 @@ package ru.sbt.hw.hw5;
  * Created by i.viktor on 04/08/16.
  */
 public interface Terminal {
-    void checkAccount();
+    boolean enterPin(String card, String pin);
 
-    void putMoney(int n);
+    void getBalance();
 
-    void getMoney(int n);
+    void getMoney();
 
+    void putMoney();
 }
