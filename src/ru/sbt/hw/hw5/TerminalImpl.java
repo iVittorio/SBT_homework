@@ -26,7 +26,7 @@ public class TerminalImpl implements Terminal {
     public boolean enterPin(String card, String pin) {
         try {
             if (isAccountLocker()) {
-                throw new AccountIsLockedException("Счет заблокирован до:" + getUnlockTimeFormatted());
+                throw new AccountIsLockedException("Счет заблокирован до: " + getUnlockTimeFormatted());
             }
             pinValidator.carValidator(card);
             pinValidator.pinValidator(pin);
@@ -39,7 +39,7 @@ public class TerminalImpl implements Terminal {
 
             System.out.println("Корректный PIN");
             return true;
-        } catch (AccountIsLockedException e) {
+        } catch (RuntimeException e) {
             countTrying++;
             System.out.println(e.getMessage());
             if (countTrying >= 3) {
@@ -47,9 +47,9 @@ public class TerminalImpl implements Terminal {
                 time = new Date(System.currentTimeMillis() + 5*1000);
                 System.out.println("Счет заблокирован до: " + getUnlockTimeFormatted());
             }
-        } catch (RuntimeException e) {
+        } /*catch (RuntimeException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
         return false;
     }
 
@@ -71,6 +71,7 @@ public class TerminalImpl implements Terminal {
                 throw new RuntimeException("Минимальная сумма для пополнения счета равна 100 у.е.");
             }
             terminalServer.putMoney(n);
+            correctedPin = false;
 
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -87,6 +88,7 @@ public class TerminalImpl implements Terminal {
                 throw new RuntimeException("Введите верный PIN");
             }
             terminalServer.getBalance();
+            correctedPin = false;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -106,6 +108,7 @@ public class TerminalImpl implements Terminal {
             }
 
             terminalServer.getCash(n);
+            correctedPin = false;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }

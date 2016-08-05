@@ -18,7 +18,7 @@ public class TerminalServer {
     }
 
     public void getBalance() {
-        System.out.println("Баланс равен: " + person.getMoney());
+        System.out.println("Баланс равен: " + person.getMoney() + "у.е.");
     }
 
     public void getCash(int sum) {
