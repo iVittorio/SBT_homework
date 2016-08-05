@@ -1,5 +1,9 @@
 package ru.sbt.hw.hw5;
 
+import ru.sbt.hw.hw5.source.PinValidator;
+import ru.sbt.hw.hw5.source.TerminalImpl;
+import ru.sbt.hw.hw5.source.TerminalServer;
+
 /**
  * Created by i.viktor on 05/08/16.
  */

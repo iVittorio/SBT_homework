@@ -1,4 +1,4 @@
-package ru.sbt.hw.hw5;
+package ru.sbt.hw.hw5.source;
 
 /**
  * Created by i.viktor on 05/08/16.

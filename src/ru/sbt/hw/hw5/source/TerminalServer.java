@@ -1,4 +1,4 @@
-package ru.sbt.hw.hw5;
+package ru.sbt.hw.hw5.source;
 
 
 /**
