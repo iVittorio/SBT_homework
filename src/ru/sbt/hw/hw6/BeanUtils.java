@@ -13,9 +13,7 @@ public class BeanUtils {
 
     public static void main(String[] args) {
         TestClass testClass1 = new TestClass(20, "Alex", true);
-        TestClass testClass2 = new TestClass();
-
-        String s = "das";
+        TestClass2 testClass2 = new TestClass2();
 
 
         assign(testClass2, testClass1);
@@ -33,8 +31,16 @@ public class BeanUtils {
         try {
             for (Method s : setters) {
                 for (Method g : getters) {
-                    if(s.getParameterTypes()[0].equals(g.getReturnType()))
-                        s.invoke(to,g.invoke(from));
+                    String setterName = s.getName().substring(3);
+                    String getterName = g.getName().substring(3);
+                    if(setterName.equals(getterName)) {
+                        Class<?> setterType = s.getParameterTypes()[0];
+                        Class<?> getterType = g.getReturnType();
+                        Class<?> superGetterType = getterType.getSuperclass();
+                        if(setterType.equals(getterType) ||
+                                setterType.equals(superGetterType))
+                            s.invoke(to,g.invoke(from));
+                    }
                 }
             }
         } catch ( IllegalAccessException | InvocationTargetException e) {

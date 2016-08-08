@@ -4,26 +4,24 @@ package ru.sbt.hw.hw6;
  * Created by i.viktor on 08/08/16.
  */
 public class TestClass {
-    private int age;
+    private Integer age;
     private String name;
     private boolean sex;
 
-    public TestClass() {
-
-    }
-
-    public TestClass(int age, String name, boolean sex) {
-        this.age = age;
-        this.name = name;
-        this.sex = sex;
-    }
-
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean getSex() {
@@ -34,11 +32,14 @@ public class TestClass {
         this.sex = sex;
     }
 
-    public String getName() {
-        return name;
+    public TestClass() {
     }
 
-    public void setName(String name) {
+    public TestClass(Integer age, String name, boolean sex) {
+        this.age = age;
         this.name = name;
+        this.sex = sex;
     }
+
+
 }
